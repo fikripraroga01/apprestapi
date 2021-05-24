@@ -19,3 +19,17 @@ exports.tampilsemuabarang = function (req, res) {
         }
     });
 };
+
+//menampilkan semua data barang berdasarkan KodeBarang
+exports.tampilberdasarkankodebarang = function (req, res) {
+    let id = req.params.id;
+    connection.query('SELECT * FROM barang WHERE KodeBarang = ?', [id],
+        function (error, rows, fileds) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok(rows, res);
+            }
+        }
+    );
+};
