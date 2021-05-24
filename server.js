@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 //panggil routes
 var routes = require('./routes')
-routeapps();
+routes(app);
 
 app.listen(1223, () => {
     console.log(`Server started on port`);
