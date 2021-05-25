@@ -70,3 +70,19 @@ exports.ubahBarang = function (req, res) {
         }
     );
 };
+
+//Menghapus data berdasarkan id
+exports.hapusBarang = function (req, res) {
+    var KodeBarang = req.body.KodeBarang;
+
+    connection.query('DELETE FROM barang WHERE KodeBarang=?',
+        [KodeBarang],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Hapus Data!", res)
+            }
+        }
+    );
+};
