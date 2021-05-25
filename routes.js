@@ -14,5 +14,8 @@ module.exports = function (app) {
         .get(jsonku.tampilberdasarkankodebarang);
 
     app.route('/tambah')
-        .post(jsonku.tambahBarang)
+        .post(jsonku.tambahBarang);
+
+    app.route('/ubah')
+        .put(jsonku.ubahBarang);
 }

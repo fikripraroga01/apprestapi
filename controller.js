@@ -36,18 +36,37 @@ exports.tampilberdasarkankodebarang = function (req, res) {
 
 //menambahkan data barang
 exports.tambahBarang = function (req, res) {
-    var KodeBarang = req.body.KodeBarang;
     var NamaBarang = req.body.NamaBarang;
     var Harga = req.body.Harga;
     var Stok = req.body.Stok;
 
-    connection.query('INSERT INTO barang (KodeBarang,NamaBarang,Harga,Stok) VALUES(?,?,?,?)',
-        [KodeBarang, NamaBarang, Harga, Stok],
+    connection.query('INSERT INTO barang (NamaBarang,Harga,Stok) VALUES(?,?,?)',
+        [NamaBarang, Harga, Stok],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
             } else {
                 response.ok("Berhasil Menambahkan Data!", res)
             }
-        });
+        }
+    );
+};
+
+//mengubah data berdasarkan id
+exports.ubahBarang = function (req, res) {
+    var KodeBarang = req.body.KodeBarang;
+    var NamaBarang = req.body.NamaBarang;
+    var Harga = req.body.Harga;
+    var Stok = req.body.Stok;
+
+    connection.query('UPDATE barang SET NamaBarang=?, Harga=?, Stok=? WHERE KodeBarang=?',
+        [NamaBarang, Harga, Stok, KodeBarang],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Ubah Data!", res)
+            }
+        }
+    );
 };
