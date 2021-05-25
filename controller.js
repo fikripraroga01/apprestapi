@@ -33,3 +33,21 @@ exports.tampilberdasarkankodebarang = function (req, res) {
         }
     );
 };
+
+//menambahkan data barang
+exports.tambahBarang = function (req, res) {
+    var KodeBarang = req.body.KodeBarang;
+    var NamaBarang = req.body.NamaBarang;
+    var Harga = req.body.Harga;
+    var Stok = req.body.Stok;
+
+    connection.query('INSERT INTO barang (KodeBarang,NamaBarang,Harga,Stok) VALUES(?,?,?,?)',
+        [KodeBarang, NamaBarang, Harga, Stok],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Menambahkan Data!", res)
+            }
+        });
+};
